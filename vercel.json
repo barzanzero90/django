@@ -1,13 +1,10 @@
 {
-    "builds": [{
-        "src": "deploy/wsgi.py",
-        "use": "@vercel/python",
-        "config":  { "maxLambdaSize": "15mb", "runtime": "python3.11.2" }
-    }],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "deploy/wsgi.py"
-        }
-    ]
-}
+    "build": {
+      "env": {
+        "PIP_NO_CACHE_DIR": "off",
+        "PIP_DISABLE_PIP_VERSION_CHECK": "on"
+      },
+      "command": "pip install --target . --upgrade -r requirements.txt"
+    }
+  }
+  
